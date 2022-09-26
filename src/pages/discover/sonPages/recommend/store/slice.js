@@ -22,17 +22,17 @@ export const getNewAlbumData =createAsyncThunk("recommend/newAlbum",async()=>{
 })
 
  // 飙升榜单
-export const getHighRankData =createAsyncThunk("recommend/rank",async()=>{
+export const getHighRankData =createAsyncThunk("recommend/highRank",async()=>{
     const res = await getTopListReal(19723756)
     return res
 })
 
-export const getSRankData =createAsyncThunk("recommend/rank",async()=>{
-    const res = await getTopListReal(0)
+export const getNewRankData =createAsyncThunk("recommend/newRank",async()=>{
+    const res = await getTopListReal(3779629)
     return res
 })
-export const getTRankData =createAsyncThunk("recommend/rank",async()=>{
-    const res = await getTopListReal(0)
+export const getOriginRankData=createAsyncThunk("recommend/originRank",async()=>{
+    const res = await getTopListReal(2884035)
     return res
 })
 
@@ -98,7 +98,7 @@ const recommendSlice = createSlice({
 
         [getNewAlbumData.fulfilled](state,{payload}){
             console.log(payload,"最新专辑")
-            state.newAlbums=payload.albums
+            state.newAlbums=payload.weekData
         },
         // 失败
         [getNewAlbumData.rejected](state,err){
@@ -122,6 +122,33 @@ const recommendSlice = createSlice({
         // 加载中
         [getHighRankData.pending](state){
         },
+
+
+        [getNewRankData.fulfilled](state,{payload}){
+            state.newRankPlayList=payload.playlist
+        },
+        // 失败
+        [getNewRankData.rejected](state,err){
+            console.log('加载失败')
+            
+        },
+        // 加载中
+        [getNewRankData.pending](state){
+        },
+
+
+        [getOriginRankData.fulfilled](state,{payload}){
+            state.originRankPlayList=payload.playlist
+        },
+        // 失败
+        [getOriginRankData.rejected](state,err){
+            console.log('加载失败')
+            
+        },
+        // 加载中
+        [getOriginRankData.pending](state){
+        },
+
     }
 
 

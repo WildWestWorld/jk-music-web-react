@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 
 import { configureStore } from '@reduxjs/toolkit';
 import recommendSlice from '../pages/discover/sonPages/recommend/store/slice';
-
+import playBarSlice from'@/components/common/player-bar/store/slice'
 import totolReducer from './reducer';
 
 // 用于让浏览器插件redux-tools 生效
@@ -15,7 +15,8 @@ export default store;
 // 创建sotre的新方法
 export const reduxStore = configureStore({
      reducer:{
-        recommendSlice
+        recommendSlice,
+        playBarSlice
      }
 })
 

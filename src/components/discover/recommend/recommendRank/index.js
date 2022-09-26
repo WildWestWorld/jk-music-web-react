@@ -4,15 +4,18 @@ import { RankingWrapper } from './style'
 
 import { getTopList } from '../../../../api/recommend'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
-import { getHighRankData } from '../../../../pages/discover/sonPages/recommend/store/slice'
+import { getHighRankData ,getNewRankData,getOriginRankData} from '../../../../pages/discover/sonPages/recommend/store/slice'
+import JKTopRanking from './top-ranking'
 
 
 const JKRecommendRank = memo(() => {
   const dispatch = useDispatch()
   const recommendSlice = useSelector(state=>state.recommendSlice,shallowEqual)
-  console.log(recommendSlice,"Slice")
+
   useEffect(()=>{
     dispatch(getHighRankData())
+    dispatch(getNewRankData())
+    dispatch(getOriginRankData())
 
     getTopList(0).then((res)=>{
       console.log(res)
@@ -22,7 +25,13 @@ const JKRecommendRank = memo(() => {
   return (
     <RankingWrapper>
         <RecommendHeader title="排行榜"></RecommendHeader>
-        <div>测试</div>
+        {/* 排行榜的背景图片 */}
+        <div className='tops-rank-bgc'>
+          <JKTopRanking info={recommendSlice.highRankPlayList}></JKTopRanking>
+          <JKTopRanking info={recommendSlice.newRankPlayList}></JKTopRanking>
+          <JKTopRanking info={recommendSlice.originRankPlayList}></JKTopRanking>
+
+        </div>
     </RankingWrapper>
   )
 })

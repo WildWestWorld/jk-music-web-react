@@ -15,6 +15,7 @@ import { reduxStore } from './store';
 
 import JKAppHeader from '@/components/app-header'
 import JKAppFooter from '@/components/app-footer'
+import JKPlayBar from './components/common/player-bar';
 
 export default memo(function app() {
     return (
@@ -23,6 +24,7 @@ export default memo(function app() {
             <JKAppHeader></JKAppHeader>
             {renderRoutes(routers)}
             <JKAppFooter></JKAppFooter>
+            <JKPlayBar></JKPlayBar>
         </BrowserRouter>
         </Provider>
     )

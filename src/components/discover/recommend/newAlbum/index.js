@@ -12,12 +12,12 @@ const JKNewAlbum = memo(() => {
 
   const dispatch = useDispatch()
   const recommendReducer =useSelector(state=>state.recommendSlice,shallowEqual)
-  const newAlbums = recommendReducer.newAlbums
+  const {newAlbums=[]} =recommendReducer
   
   const carouselRef=useRef()
 
   useEffect(()=>{
-   dispatch(getNewAlbumData())
+   dispatch(getNewAlbumData(123))
   },[dispatch])  
 
   return (
