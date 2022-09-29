@@ -12,6 +12,7 @@ import JKSongs from "@/pages/discover/sonPages/songs";
 import JKFriend from "@/pages/friend";
 import JKMy from "@/pages/my";
 import { Redirect } from "react-router-dom";
+import JKPlayer from "../pages/player";
 
 const routers =[
  {
@@ -48,6 +49,9 @@ const routers =[
         },{
             path:"/discover/songs",
             component:JKSongs
+        },{
+            path:"/discover/player",
+            component:JKPlayer
         },
 
     ]

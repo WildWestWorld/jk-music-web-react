@@ -5,6 +5,7 @@ import { useEffect, useRef } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { getSongDetail } from './store/slice';
 import { formatDuration, getSizeImage, getPlaySong } from '../../../utils/fomat-utils';
+import { NavLink } from 'react-router-dom';
 
 
 
@@ -20,7 +21,7 @@ const JKPlayBar = memo(() => {
   const dispatch = useDispatch();
   const playbarReducer = useSelector(state => state.playBarSlice, shallowEqual)
 
-  const currentSong = playbarReducer.songDetail[0]
+  const currentSong = playbarReducer.songDetail[0] ||''
 
   const picUrl = (currentSong && currentSong.al.picUrl) || ""
   const songName = (currentSong && currentSong.name) || ""
@@ -40,6 +41,7 @@ const JKPlayBar = memo(() => {
 
 useEffect(() => {
   dispatch(getSongDetail(167876))
+  
 }, [dispatch])
 
 
@@ -49,7 +51,7 @@ useEffect(() => {
 
   // 方法区
   // 播放歌曲
-  const playMusic = () => {
+  const playMusic = useCallback(() => {
     console.log(audioRef)
     // audioRef.current.src = getPlaySong(currentSong.id)
 
@@ -62,7 +64,7 @@ useEffect(() => {
     }
 
     setIsPlaying(!isPlaying);
-  }
+  },[isPlaying])
 
   const timeUpdate = (e) => {
 
@@ -126,9 +128,14 @@ useEffect(() => {
         </Control>
         <PlayInfo>
           <div className='image'>
-            <a href='/todo'>
+            {/* <a href='/todo'>
               <img src={getSizeImage(picUrl, 35)} alt=''></img>
-            </a>
+            </a> */}
+
+            <NavLink to='/discover/player'>
+              <img src={getSizeImage(picUrl, 35)} alt=''></img>
+            </NavLink>
+
           </div>
           <div className='info'>
             <div className='song'>
