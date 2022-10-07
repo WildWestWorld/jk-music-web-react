@@ -1,7 +1,7 @@
-import React, { memo } from 'react';
+import React, { memo,Suspense } from 'react';
 
 
-import {renderRoutes} from 'react-router-config';
+import { renderRoutes } from 'react-router-config';
 
 import { BrowserRouter } from 'react-router-dom'
 
@@ -20,12 +20,14 @@ import JKPlayBar from './components/common/player-bar';
 export default memo(function app() {
     return (
         <Provider store={reduxStore}>
-        <BrowserRouter>
-            <JKAppHeader></JKAppHeader>
-            {renderRoutes(routers)}
-            <JKAppFooter></JKAppFooter>
-            <JKPlayBar></JKPlayBar>
-        </BrowserRouter>
+            <BrowserRouter>
+                <JKAppHeader></JKAppHeader>
+                <Suspense fallback={<div>page loading</div>}>
+                    {renderRoutes(routers)}
+                </Suspense>
+                <JKAppFooter></JKAppFooter>
+                <JKPlayBar></JKPlayBar>
+            </BrowserRouter>
         </Provider>
     )
 })

@@ -153,7 +153,9 @@ export const Operator = styled.div`
 
     .loop {
       background-position: ${props => {
-        switch(props.sequence) {
+        switch(props.playMusicMode) {
+          case 0 :
+            return "-3px -344px";
           case 1:
             return "-66px -248px";
           case 2:

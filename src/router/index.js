@@ -1,4 +1,9 @@
-import JKDiscover from "@/pages/discover";
+import React from 'react';
+import { Redirect } from "react-router-dom";
+
+const JKDiscover = React.lazy(()=>import('@/pages/discover'))
+
+// import JKDiscover from "@/pages/discover";
 // JKDiscover 的子页面
 import JKAlbum from "@/pages/discover/sonPages/album";
 import JKArtist from "@/pages/discover/sonPages/artist";
@@ -11,7 +16,6 @@ import JKSongs from "@/pages/discover/sonPages/songs";
 
 import JKFriend from "@/pages/friend";
 import JKMy from "@/pages/my";
-import { Redirect } from "react-router-dom";
 import JKPlayer from "../pages/player";
 
 const routers =[

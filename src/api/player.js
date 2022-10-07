@@ -9,3 +9,13 @@ export function getSongDetailAPI(ids){
         }
     })
 }
+
+export function getLyricDetailAPI(id){
+    return request({
+        url:"/lyric",
+        method:"GET",
+        params:{
+            id:id
+        }
+    })
+}

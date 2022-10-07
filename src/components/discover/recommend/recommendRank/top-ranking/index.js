@@ -1,12 +1,21 @@
 import React, { memo, useEffect } from 'react'
+import { playMusicLogical } from '@/pages/player/store/slice'
 import { TopRankingWrapper } from './style'
+import { useDispatch } from 'react-redux'
 
 const JKTopRanking = memo((props) => {
   
   const {info} = props
   const {tracks =[]} = info
+
+  const dispatch =useDispatch();
   useEffect(()=>{
   })
+  const playMusic =(item)=>{
+    const id  = item.id
+    console.log(item.id)
+    dispatch(playMusicLogical(id))
+  }
 
   return (
   
@@ -36,7 +45,7 @@ const JKTopRanking = memo((props) => {
                     <span className='name text-nowrap'>{item.name}</span>
 
                     <div className='operate'>
-                      <button className='btn sprite_02 play'></button>
+                      <button className='btn sprite_02 play' onClick={e=>playMusic(item)}></button>
                       <button className='btn sprite_icon2 addto'></button>
                       <button className='btn sprite_02 favor'></button>
                     </div>
